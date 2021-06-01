@@ -1,6 +1,9 @@
-\documentclass{report}
+\documentclass[12pt]{report}
 \usepackage[utf8]{inputenc}
-
+\usepackage[a4paper, total={6.5in,10in}]{geometry}
+\setlength{\parskip}{.75em}
+\setlength{\parindent}{0em}
+\usepackage{amsmath}
 \title{Solutions Attempt for Eisberg and Resnick's QM}
 \author{Angel-Emilio Villegas Sanchez}
 \date{May 2021}
@@ -23,8 +26,35 @@ The seemingly bright pockets should be hotter than the exposed surface of a coal
 \end{itemize}
 \subsection*{3) If we look into a cavity whose walls are kept at a constant temperature no details of the interior are visible. Explain.}
 This is an oddly-phrased question. If seeing darkness is what they mean by, "no details of the interior are visible," then, assuming there's no self-luminosity, this cavity acts as a \textit{blackbody} since all the inner walls should absorb the radiation within. Like other blackbodies, reflected light is not possible.
-\section*{Problems:}
-\subsection*{1) At what wavelength does a cavity at \(6000^\circ K\) radiate most per unit wavelength?}
-\subsection*{2) Show that the proportionality constant in (1-4) is \(4/c\). That is, show that the relation between spectral radiancy \(R_T(\nu)\)}
-\end{document}
 
+\section*{Problems:}
+\newcommand{\lambmax}{\lambda_{max}}
+\newcommand{\Wiens}{2.898\,\cdot\,10^{-3}\;}
+\subsection*{1) At what wavelength does a cavity at \(6000^\circ K\) radiate most per unit wavelength?}
+We can use Wien's displacement law, \(\nu_{max} \propto \;T\), written in the form, 
+\[\lambmax T = const\]
+where Wien's constant is \(\Wiens m^\circ K\). All we have to is find the variable \(\lambmax\),
+\[\lambmax = \frac{\Wiens}{6000} = 483 \cdot 10^{-9}\; m = 483\; nm \]
+\newcommand{\specrad}{R_T(\nu)}
+\newcommand{\enerden}{\rho_T(\nu)}
+\newcommand{\phE}{h\nu}
+\newcommand{\molE}{kT}
+\subsection*{2) Show that the proportionality constant in \(\enerden \propto \specrad\) is \(4/c\). That is, show that the relation between spectral radiancy \(\specrad\) and energy density \(\enerden\) is \(\specrad\,d\nu = (c/4)\enerden d\nu\)}
+In order to find this constant of proportionality I will arrange the equation in the following manner 
+\[\int_0^{\infty}{\specrad\;d\nu} = Z\int_0^{\infty}{\enerden\;d\nu}\]
+
+The left integral has been found empirically to be \(\sigma T^4\) (\textbf{Stefan's Law}). The differential for the energy density in a unit volume is given by \textit{Planck's blackbody spectrum} formula
+\[\enerden d\nu = \frac{8 \pi \nu^2}{c^3}\;\frac{\phE}{e^{\phE /\molE} - 1}\; d\nu\]
+
+This formula is derived in Pg.6 - Pg.17. It requires a good grasp of integration, a decent grasp of E\&M, and some concepts of Statistical Mechanics (particularly the Boltzmann Distribution). After some research, the integral on the right requires sophisticated integration skills in order to find the correct answer analytically. The following set-up has been copied from a Slader solution by Abdelrahman Almeghari on slader,
+\[\int_0^\infty \frac{8 \pi \nu^2}{c^3}\;\frac{\phE}{e^{\phE /\molE} - 1}\; d\nu\]
+Substitute \(\phE/\molE\) with \(x\), then
+\[\int_0^\infty \frac{8 \pi \nu^2}{c^3}\;\frac{kTx}{e^{x} - 1}\; \frac{\molE}{h}\; dx\]
+and also substitute \(\nu^2\)
+\[\frac{8 \pi}{c^3}\int_0^\infty\;(\frac{kTx}{h})^2\;\frac{kTx}{e^{x} - 1}\; \frac{\molE}{h}\; dx\]
+\[\frac{8 \pi}{c^3}\;\frac{(kT)^4}{h^3}\int_0^\infty\frac{x^3}{e^{x} - 1}\;dx\]
+
+We are left with a very difficult problem that, unless you've coursed through some nice pure mathematics courses, or a really good Physics program, then you won't be able to figure it out. There seems to be more than one potential solution: one involves using \textbf{contour integration}, the other quick and dirty method involves using a \textbf{Riemann zeta function}. Here's the integral form of the Riemann Zeta function
+\[\zeta(s) = \frac{1}{\Gamma(s)}\int_0^\infty\frac{x^{s-1}}{e^x - 1}\]
+You will notice it matches quite perfectly the 
+\end{document} 
